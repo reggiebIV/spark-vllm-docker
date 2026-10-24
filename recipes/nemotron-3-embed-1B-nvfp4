@@ -1,0 +1,31 @@
+# Recipe: Nemotron-3-Embed-1B-NVFP4
+# Nemotron-3-Embed-1B model with NVFP4 quantization support
+
+recipe_version: "1"
+name: Nemotron-3-Embed-1B-NVFP4
+description: vLLM serving Nemotron-3-Embed-1B-NVFP4 on a SINGLE NODE ONLY!
+
+# HuggingFace model to download (optional, for --download-model)
+model: nvidia/Nemotron-3-Embed-1B-NVFP4
+
+# Container image to use
+container: vllm-node
+
+# This model can only run on single node (solo)
+solo_only: true
+
+# Default settings (can be overridden via CLI)
+defaults:
+  port: 8001
+  host: 0.0.0.0
+
+# The vLLM serve command template
+command: |
+  vllm serve nvidia/Nemotron-3-Embed-1B-NVFP4 \
+    --host {host} \
+    --port {port} \
+    --cudagraph-capture-sizes \
+    1 2 4 {{8..248..8}} {{256..4096..16}} \
+    {{4224..8192..128}} {{8448..16384..256}} \
+    {{16896..32768..512}} \
+  > /tmp/vllm-serve.log 2>&1

@@ -43,4 +43,5 @@ command: |
   --mamba_ssm_cache_dtype float32 \
   --tensor-parallel-size {tensor_parallel} \
   --attention-backend TRITON_ATTN \
-  --distributed-executor-backend ray
+  --distributed-executor-backend ray \
+      > /tmp/vllm-serve.log 2>&1

@@ -41,4 +41,5 @@ command: |
      --kv-cache-dtype fp8  \
      --enable-prefix-caching  \
      --load-format fastsafetensors  \
-     --gpu-memory-utilization {gpu_memory_utilization}
+     --gpu-memory-utilization {gpu_memory_utilization} \
+  > /tmp/vllm-serve.log 2>&1
