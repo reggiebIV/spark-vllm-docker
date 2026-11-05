@@ -47,4 +47,5 @@ command: |
     --limit-mm-per-prompt '{{"video": 1, "image": 1}}' \
     --video-pruning-rate 0.5 \
     --media-io-kwargs '{{"video": {{"fps": 2, "num_frames": 256}}}}' \
-    --load-format instanttensor
+    --load-format instanttensor\
+      > /tmp/vllm-serve.log 2>&1
